@@ -1,0 +1,865 @@
+/* ========================================
+   DATE PLANNER ROADMAP
+======================================== */
+
+.Planner-Roadmap {
+
+    position: fixed;
+
+    top: 24px;
+    right: 24px;
+
+    width: 245px;
+
+    padding: 18px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.72);
+
+    border:
+        1px solid rgba(255, 145, 164, 0.35);
+
+    box-shadow:
+        0 15px 40px rgba(198, 83, 112, 0.16);
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    z-index: 9000;
+
+    transition:
+        transform 0.6s cubic-bezier(.22, 1, .36, 1),
+        opacity 0.45s ease;
+
+}
+
+
+/* ========================================
+   ROADMAP HIDDEN DURING HOVER GAME
+======================================== */
+
+.Planner-Roadmap.game-hidden {
+
+    transform:
+        translateX(
+            calc(-100vw - 450px)
+        );
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
+
+.Planner-Title {
+
+    margin-bottom: 16px;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+    color:
+        #c65370;
+
+    text-align: center;
+
+}
+
+
+/* ========================================
+   ROADMAP STEP
+======================================== */
+
+.Planner-Step {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    min-height: 55px;
+
+    padding: 10px;
+
+    border-radius: 14px;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        opacity 0.25s ease;
+
+}
+
+
+/* ========================================
+   STEP STATES
+======================================== */
+
+.Planner-Step.active {
+
+    background:
+        rgba(255, 145, 164, 0.16);
+
+}
+
+
+.Planner-Step.completed {
+
+    background:
+        rgba(125, 210, 155, 0.15);
+
+}
+
+
+.Planner-Step.locked {
+
+    opacity:
+        0.55;
+
+}
+
+
+/* ========================================
+   STEP ICON
+======================================== */
+
+.Planner-Step-Icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.8);
+
+    font-size: 16px;
+
+    box-shadow:
+        0 5px 12px rgba(198, 83, 112, 0.08);
+
+}
+
+
+/* ========================================
+   STEP TEXT
+======================================== */
+
+.Planner-Step-Text {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    min-width: 0;
+
+}
+
+
+.Planner-Step-Text strong {
+
+    font-size: 13px;
+
+    line-height: 1.2;
+
+    color:
+        #6d3142;
+
+}
+
+
+.Planner-Step-Text small {
+
+    font-size: 11px;
+
+    line-height: 1.2;
+
+    color:
+        #9a6978;
+
+}
+
+
+/* ========================================
+   ROADMAP LINE
+======================================== */
+
+.Planner-Line {
+
+    width: 2px;
+
+    height: 18px;
+
+    margin-left: 26px;
+
+    background:
+        rgba(198, 83, 112, 0.20);
+
+}
+
+
+/* ========================================
+   SEND BUTTON
+======================================== */
+
+.Planner-Send-Button {
+
+    width: 100%;
+
+    margin-top: 14px;
+
+    padding: 11px 14px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff91a4,
+            #e96e89
+        );
+
+    color:
+        white;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 18px rgba(233, 110, 137, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.Planner-Send-Button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 11px 22px rgba(233, 110, 137, 0.30);
+
+}
+
+
+.Planner-Send-Button:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* ========================================
+   GENERIC HIDDEN
+======================================== */
+
+.hidden {
+
+    display:
+        none !important;
+
+}
+
+
+/* ========================================
+   PLANNER OVERLAYS
+======================================== */
+
+.Planner-Overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(255, 240, 245, 0.58);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    z-index: 20000;
+
+}
+
+
+/* ========================================
+   SEND FORM
+======================================== */
+
+.Planner-Form-Box {
+
+    position: relative;
+
+    width:
+        min(100%, 450px);
+
+    padding: 28px;
+
+    border-radius: 24px;
+
+    background:
+        rgba(255, 255, 255, 0.94);
+
+    box-shadow:
+        0 25px 60px rgba(198, 83, 112, 0.20);
+
+    text-align: center;
+
+}
+
+
+.Planner-Close {
+
+    position: absolute;
+
+    top: 12px;
+    right: 14px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 145, 164, 0.10);
+
+    color:
+        #c65370;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+}
+
+
+.Planner-Form-Icon {
+
+    font-size: 42px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.Planner-Form-Box h2 {
+
+    margin: 0;
+
+    color:
+        #c65370;
+
+}
+
+
+.Planner-Form-Subtitle {
+
+    margin:
+        8px 0 20px;
+
+    color:
+        #8c6673;
+
+    font-size: 13px;
+
+}
+
+
+/* ========================================
+   SUMMARY
+======================================== */
+
+.Planner-Summary {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+
+    padding: 14px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 220, 230, 0.45);
+
+}
+
+
+.Planner-Summary-Row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    text-align: left;
+
+}
+
+
+.Planner-Summary-Row span {
+
+    color:
+        #805466;
+
+    font-size: 12px;
+
+}
+
+
+.Planner-Summary-Row strong {
+
+    color:
+        #5f3241;
+
+    font-size: 12px;
+
+    text-align: right;
+
+}
+
+
+/* ========================================
+   INPUTS
+======================================== */
+
+.Planner-Input-Group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    margin-bottom: 13px;
+
+    text-align: left;
+
+}
+
+
+.Planner-Input-Group label {
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color:
+        #704253;
+
+}
+
+
+.Planner-Input-Group input {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 12px;
+
+    border:
+        1px solid rgba(198, 83, 112, 0.22);
+
+    border-radius: 11px;
+
+    background:
+        rgba(255, 248, 250, 0.9);
+
+    color:
+        #5f3241;
+
+    outline: none;
+
+}
+
+
+.Planner-Input-Group input:focus {
+
+    border-color:
+        #ff91a4;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 145, 164, 0.12);
+
+}
+
+
+/* ========================================
+   CONFIRM BUTTON
+======================================== */
+
+.Planner-Confirm-Button {
+
+    width: 100%;
+
+    padding: 12px 16px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff91a4,
+            #e96e89
+        );
+
+    color:
+        white;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    box-shadow:
+        0 8px 20px rgba(233, 110, 137, 0.20);
+
+}
+
+
+.Planner-Confirm-Button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 24px rgba(233, 110, 137, 0.28);
+
+}
+
+
+.Planner-Confirm-Button:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* ========================================
+   ERROR
+======================================== */
+
+.Planner-Error {
+
+    margin:
+        8px 0 0;
+
+    color:
+        #c94f6d;
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   RESTART BOX
+======================================== */
+
+.Planner-Restart-Box {
+
+    width:
+        min(100%, 400px);
+
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background:
+        rgba(255, 255, 255, 0.95);
+
+    box-shadow:
+        0 25px 60px rgba(198, 83, 112, 0.20);
+
+    text-align: center;
+
+}
+
+
+.Planner-Restart-Icon {
+
+    margin-bottom: 8px;
+
+    font-size: 46px;
+
+}
+
+
+.Planner-Restart-Box h2 {
+
+    margin:
+        0 0 8px;
+
+    color:
+        #c65370;
+
+}
+
+
+.Planner-Restart-Box p {
+
+    margin:
+        7px 0;
+
+    color:
+        #8c6673;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ========================================
+   RESTART BUTTONS
+======================================== */
+
+.Planner-Restart-Buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+}
+
+
+.Planner-Restart-Yes,
+.Planner-Restart-No {
+
+    flex: 1;
+
+    padding: 12px 14px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.Planner-Restart-Yes {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff91a4,
+            #e96e89
+        );
+
+    color:
+        white;
+
+    box-shadow:
+        0 8px 18px rgba(233, 110, 137, 0.22);
+
+}
+
+
+.Planner-Restart-No {
+
+    background:
+        #f5e8ec;
+
+    color:
+        #8b5364;
+
+}
+
+
+.Planner-Restart-Yes:hover,
+.Planner-Restart-No:hover {
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* ========================================
+   THANK YOU
+======================================== */
+
+.Planner-Thank-You-Box {
+
+    width:
+        min(100%, 420px);
+
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background:
+        rgba(255, 255, 255, 0.95);
+
+    box-shadow:
+        0 25px 60px rgba(198, 83, 112, 0.20);
+
+    text-align: center;
+
+}
+
+
+.Planner-Thank-You-Avatar {
+
+    width: 100px;
+    height: 100px;
+
+    margin:
+        0 auto 12px;
+
+}
+
+
+.Planner-Thank-You-Avatar img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+}
+
+
+.Planner-Thank-You-Box h2 {
+
+    margin:
+        0 0 12px;
+
+    color:
+        #c65370;
+
+}
+
+
+.Planner-Thank-You-Box p {
+
+    color:
+        #8c6673;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .Planner-Roadmap {
+
+        top: auto;
+        right: 14px;
+        bottom: 14px;
+
+        width:
+            min(
+                calc(100vw - 28px),
+                260px
+            );
+
+    }
+
+
+    .Planner-Roadmap.game-hidden {
+
+        transform:
+            translateX(
+                calc(-100vw - 350px)
+            );
+
+    }
+
+
+    .Planner-Form-Box,
+    .Planner-Restart-Box,
+    .Planner-Thank-You-Box {
+
+        padding: 24px;
+
+        border-radius: 20px;
+
+    }
+
+}

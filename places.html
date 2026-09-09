@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="places.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="planner.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+
+    <title>Places</title>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         SIDEBAR
+    ======================================== -->
+
+    <div
+        id="Sidebar"
+        class="Sidebar"
+    >
+
+        <button
+            type="button"
+            id="Sidebar-Toggle"
+            class="Sidebar-Toggle"
+        >
+            <span>
+                💕
+            </span>
+        </button>
+
+
+        <button
+            type="button"
+            class="Sidebar-Button"
+            id="Home-Button"
+            title="Home"
+        >
+
+            <span class="Sidebar-Icon">
+                🏠
+            </span>
+
+            <span class="Sidebar-Text">
+                Home
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="Sidebar-Button active"
+            id="Places-Button"
+            title="Places"
+        >
+
+            <span class="Sidebar-Icon">
+                📍
+            </span>
+
+            <span class="Sidebar-Text">
+                Places
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="Sidebar-Button"
+            id="Settings-Button"
+            title="Settings"
+        >
+
+            <span class="Sidebar-Icon">
+                ⚙️
+            </span>
+
+            <span class="Sidebar-Text">
+                Settings
+            </span>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ========================================
+         GAME PAGE
+    ======================================== -->
+
+    <div id="Game-Page">
+
+        <section class="Places-Page">
+
+
+            <header class="Places-Header">
+
+                <h1>
+                    Where should we go?
+                </h1>
+
+                <p>
+                    Pick a place for our date ♡
+                </p>
+
+            </header>
+
+
+            <div class="Places-Stage">
+
+
+                <div class="Place-Slider">
+
+                    <div
+                        id="Place-Deck"
+                        class="Place-Deck"
+                    ></div>
+
+
+                    <div
+                        id="Place-Indicators"
+                        class="Place-Indicators"
+                    ></div>
+
+                </div>
+
+
+                <!-- ========================================
+                     CONVERSATION
+                ======================================== -->
+
+                <div
+                    id="Place-Conversation"
+                    class="Place-Conversation"
+                >
+
+
+                    <div
+                        id="Place-Dialogue-Bubble"
+                        class="Place-Dialogue-Bubble"
+                    >
+
+
+                        <div
+                            id="Place-Dialogue"
+                            class="Place-Dialogue"
+                            aria-live="polite"
+                        >
+                            Pick place card?
+                        </div>
+
+
+                        <div
+                            id="Place-Conversation-Buttons"
+                            class="Place-Conversation-Buttons"
+                        >
+
+                            <button
+                                type="button"
+                                id="Place-No"
+                                class="Place-Choice-Button Place-No"
+                            >
+                                No
+                            </button>
+
+
+                            <button
+                                type="button"
+                                id="Place-Yes"
+                                class="Place-Choice-Button Place-Yes"
+                            >
+                                Yes
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div
+                        id="Place-Avatar"
+                        class="Places-Avatar"
+                    >
+
+                        <img
+                            id="Place-Avatar-Image"
+                            src="character/asking_avatar.png"
+                            alt="Asking avatar"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+
+
+    <!-- ========================================
+         ROADMAP
+    ======================================== -->
+
+    <aside
+        id="Planner-Roadmap"
+        class="Planner-Roadmap"
+    >
+
+        <div class="Planner-Title">
+            💕 OUR DATE PLAN
+        </div>
+
+
+        <div
+            id="Planner-Step-Date"
+            class="Planner-Step"
+        >
+
+            <div class="Planner-Step-Icon">
+                ○
+            </div>
+
+            <div class="Planner-Step-Text">
+
+                <strong>
+                    Pick a Date
+                </strong>
+
+                <small>
+                    Choose when
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="Planner-Line"></div>
+
+
+        <div
+            id="Planner-Step-Place"
+            class="Planner-Step"
+        >
+
+            <div class="Planner-Step-Icon">
+                ○
+            </div>
+
+            <div class="Planner-Step-Text">
+
+                <strong>
+                    Pick a Place
+                </strong>
+
+                <small>
+                    Choose where
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="Planner-Line"></div>
+
+
+        <div
+            id="Planner-Step-Send"
+            class="Planner-Step"
+        >
+
+            <div class="Planner-Step-Icon">
+                🔒
+            </div>
+
+            <div class="Planner-Step-Text">
+
+                <strong>
+                    Send to Receiver
+                </strong>
+
+                <small>
+                    Complete both first
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="Planner-Line"></div>
+
+
+        <div
+            id="Planner-Step-Done"
+            class="Planner-Step"
+        >
+
+            <div class="Planner-Step-Icon">
+                🔒
+            </div>
+
+            <div class="Planner-Step-Text">
+
+                <strong>
+                    Done
+                </strong>
+
+                <small>
+                    Our date is ready
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="Planner-Send-Button"
+            class="Planner-Send-Button hidden"
+        >
+            💌 Send Date
+        </button>
+
+    </aside>
+
+
+
+    <!-- ========================================
+         SETTINGS
+    ======================================== -->
+
+    <div
+        id="Settings-Overlay"
+        class="Settings-Overlay hidden"
+    >
+
+        <div class="Settings-Box">
+
+
+            <button
+                type="button"
+                id="Close-Settings"
+                class="Close-Settings"
+            >
+                ×
+            </button>
+
+
+            <div class="Settings-Icon">
+                ⚙️
+            </div>
+
+
+            <h2>
+                Settings
+            </h2>
+
+
+            <p class="Settings-Subtitle">
+                Customize our little date app 💕
+            </p>
+
+
+            <div class="Setting-Row">
+
+                <div>
+
+                    <strong>
+                        Sound
+                    </strong>
+
+                    <small>
+                        Enable game sounds
+                    </small>
+
+                </div>
+
+
+                <label class="Switch">
+
+                    <input
+                        type="checkbox"
+                        id="Sound-Toggle"
+                        checked
+                    >
+
+                    <span class="Slider"></span>
+
+                </label>
+
+            </div>
+
+            <div class="Volume-Setting">
+
+                <div class="Volume-Setting-Header">
+
+                    <div>
+
+                        <strong>
+                            Sound Volume
+                        </strong>
+
+                        <small>
+                            Adjust button, hover, and talking sounds
+                        </small>
+
+                    </div>
+
+                    <span
+                        id="Sound-Volume-Value"
+                        class="Volume-Value"
+                    >
+                        60%
+                    </span>
+
+                </div>
+
+                <input
+                    type="range"
+                    id="Sound-Volume"
+                    class="Volume-Range"
+                    min="0"
+                    max="100"
+                    step="1"
+                    value="60"
+                    aria-label="Sound volume"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="60"
+                    aria-valuetext="60%"
+                >
+
+            </div>
+
+
+<div class="Setting-Row">
+
+                <div>
+
+                    <strong>
+                        Music
+                    </strong>
+
+                    <small>
+                        Enable background music
+                    </small>
+
+                </div>
+
+
+                <label class="Switch">
+
+                    <input
+                        type="checkbox"
+                        id="Music-Toggle"
+                    >
+
+                    <span class="Slider"></span>
+
+                </label>
+
+            </div>
+
+            <div class="Volume-Setting">
+
+                <div class="Volume-Setting-Header">
+
+                    <div>
+
+                        <strong>
+                            Music Volume
+                        </strong>
+
+                        <small>
+                            Adjust the background music volume
+                        </small>
+
+                    </div>
+
+                    <span
+                        id="Music-Volume-Value"
+                        class="Volume-Value"
+                    >
+                        45%
+                    </span>
+
+                </div>
+
+                <input
+                    type="range"
+                    id="Music-Volume"
+                    class="Volume-Range"
+                    min="0"
+                    max="100"
+                    step="1"
+                    value="45"
+                    aria-label="Music volume"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="45"
+                    aria-valuetext="45%"
+                >
+
+            </div>
+
+
+<div class="Setting-Row">
+
+                <div>
+
+                    <strong>
+                        Animations
+                    </strong>
+
+                    <small>
+                        Enable animations
+                    </small>
+
+                </div>
+
+
+                <label class="Switch">
+
+                    <input
+                        type="checkbox"
+                        id="Animation-Toggle"
+                        checked
+                    >
+
+                    <span class="Slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <!-- MUSIC CHOOSER -->
+
+            <div class="Music-Section">
+
+                <h3>
+                    Music
+                </h3>
+
+                <p>
+                    Choose the soundtrack for our little date app 🎵💕
+                </p>
+
+                <small class="Music-Folder-Help">
+                    To add music manually, put the audio file in <strong>music/</strong> and add it to <strong>music/music.json</strong>.
+                </small>
+
+                <select
+                    id="Music-Chooser"
+                    class="Music-Chooser"
+                >
+                    <option value="">No music selected</option>
+                </select>
+
+            </div>
+
+
+            <div class="Theme-Section">
+
+                <h3>
+                    Color Theme
+                </h3>
+
+                <p>
+                    Choose the mood for our little date app 💕
+                </p>
+
+
+                <div class="Theme-Grid">
+
+
+                    <button
+                        type="button"
+                        class="Theme-Card active"
+                        data-theme="default"
+                    >
+
+                        <div class="Theme-Preview theme-default">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <strong>
+                            Default
+                        </strong>
+
+                        <small>
+                            Sweet Pink
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="Theme-Card"
+                        data-theme="dreams"
+                    >
+
+                        <div class="Theme-Preview theme-dreams">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <strong>
+                            Dreams
+                        </strong>
+
+                        <small>
+                            Soft Blue
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="Theme-Card"
+                        data-theme="moonlight"
+                    >
+
+                        <div class="Theme-Preview theme-moonlight">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <strong>
+                            Moonlight
+                        </strong>
+
+                        <small>
+                            Lavender
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="Theme-Card"
+                        data-theme="meadow"
+                    >
+
+                        <div class="Theme-Preview theme-meadow">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <strong>
+                            Meadow
+                        </strong>
+
+                        <small>
+                            Soft Green
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="Theme-Card"
+                        data-theme="sunset"
+                    >
+
+                        <div class="Theme-Preview theme-sunset">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <strong>
+                            Sunset
+                        </strong>
+
+                        <small>
+                            Warm Peach
+                        </small>
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- ADMIN -->
+
+            <div class="Admin-Section">
+
+                <h3>
+                    Admin Account
+                </h3>
+
+                <p>
+                    Manage places, music, and avatars.
+                </p>
+
+                <button
+                    type="button"
+                    id="Admin-Login-Button"
+                    class="Admin-Login-Button"
+                >
+                    🔐 Login as Admin
+                </button>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="Settings-Done"
+                class="Settings-Done"
+            >
+                Done ❤️
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+
+    <script src="places.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,2530 @@
+/* ========================================
+   GLOBAL
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+
+    /*
+        Base glassy pink background
+    */
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(255, 255, 255, 0.85),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            var(--theme-light),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 50% 50%,
+            var(--theme-light),
+            transparent 60%
+        ),
+        linear-gradient(
+            135deg,
+            var(--theme-bg-start) 0%,
+            var(--theme-bg-middle) 45%,
+            var(--theme-bg-end) 100%
+        );
+}
+
+:root {
+    --theme-main: #ff91a4;
+    --theme-dark: #c65370;
+    --theme-light: #ffdce6;
+
+    --theme-bg-start: #fff3f6;
+    --theme-bg-middle: #ffdce6;
+    --theme-bg-end: #fff7f9;
+
+    --theme-glow: rgba(255, 105, 140, 0.25);
+    --theme-glass: rgba(255, 255, 255, 0.55);
+}
+
+
+/* ========================================
+   SVG GLASS TEXTURE
+======================================== */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -30px;
+    width: calc(100% + 60px);
+    height: calc(100% + 60px);
+
+    pointer-events: none;
+    z-index: 0;
+
+    background:
+        rgba(255, 255, 255, 0.18);
+
+    filter:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='glassTexture' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.018' numOctaves='3' seed='12' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='14' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3C/svg%3E")
+        blur(1px);
+
+    backdrop-filter:
+        blur(12px)
+        saturate(120%);
+
+    -webkit-backdrop-filter:
+        blur(12px)
+        saturate(120%);
+
+    animation:
+        glassMovement 14s ease-in-out infinite alternate;
+}
+
+
+/* ========================================
+   GLASS MOVEMENT
+======================================== */
+
+@keyframes glassMovement {
+    0% {
+        transform:
+            translate3d(-0.5%, -0.5%, 0)
+            scale(1.02);
+    }
+
+    100% {
+        transform:
+            translate3d(0.5%, 0.5%, 0)
+            scale(1.04);
+    }
+}
+
+
+/* ========================================
+   FLOATING HEARTS
+======================================== */
+
+body::after {
+    content:
+        "♡     ♥        ♡          ♥      ♡        ♥       ♡";
+
+    position: fixed;
+    left: -5%;
+    bottom: -120px;
+    width: 110%;
+    height: 120%;
+
+    pointer-events: none;
+    z-index: 0;
+
+    font-size: 2rem;
+    line-height: 5rem;
+    letter-spacing: 1rem;
+    word-spacing: 1rem;
+
+    color:
+        rgba(255, 105, 140, 0.22);
+
+    white-space: normal;
+
+    filter:
+        blur(1.5px);
+
+    animation:
+        floatingHearts
+        18s
+        linear
+        infinite;
+}
+
+
+/* ========================================
+   FLOATING HEART ANIMATION
+======================================== */
+
+@keyframes floatingHearts {
+    0% {
+        transform:
+            translateY(100vh)
+            translateX(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.75;
+    }
+
+    50% {
+        transform:
+            translateY(0)
+            translateX(30px)
+            rotate(6deg);
+
+        opacity: 0.55;
+    }
+
+    100% {
+        transform:
+            translateY(-120vh)
+            translateX(-30px)
+            rotate(-6deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* ========================================
+   MAIN PAGE
+======================================== */
+
+#Game-Page {
+    position: relative;
+    z-index: 1;
+
+    min-height: 100vh;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    transition:
+        filter 0.4s ease;
+}
+
+
+/* ========================================
+   BLUR GAME PAGE
+======================================== */
+
+#Game-Page.blurred {
+    filter:
+        blur(8px);
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.Header {
+    text-align: center;
+}
+
+#Title {
+    margin-top: 30px;
+    font-size: 3rem;
+    font-weight: bold;
+
+    color:
+        var(--theme-main);
+
+    text-shadow:
+        0 4px 15px
+        var(--theme-glow);
+}
+
+#Subtitle {
+    margin-top: 5px;
+
+    color:
+        var(--theme-main);
+}
+
+
+/* ========================================
+   MAIN
+======================================== */
+
+main {
+    width: 20rem;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    margin:
+        20px auto 0;
+}
+
+
+/* ========================================
+   DIALOGUE BOX
+======================================== */
+
+.Dialog-Box {
+    width: 20rem;
+    min-height: 60px;
+    padding: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.55),
+            rgba(255, 255, 255, 0.25)
+        );
+
+    backdrop-filter:
+        blur(18px)
+        saturate(125%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(125%);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.80);
+
+    border-radius:
+        20px;
+
+    box-shadow:
+        0 8px 32px
+        var(--theme-glow),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.90),
+
+        inset 0 0 20px
+        var(--theme-light);
+
+    transition:
+        width 0.4s ease;
+}
+
+
+/* ========================================
+   DIALOGUE TEXT
+======================================== */
+
+#Dialog {
+    font-size:
+        larger;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+#Dialog.change {
+    opacity:
+        0;
+
+    transform:
+        translateX(-5px);
+}
+
+
+/* ========================================
+   BUTTON CONTAINER
+======================================== */
+
+.Buttons {
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    gap:
+        20px;
+
+    width:
+        100%;
+
+    margin-top:
+        20px;
+}
+
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+#No-btn,
+#Yes-btn {
+    width:
+        8rem;
+
+    height:
+        3rem;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.35);
+
+    border-radius:
+        10px;
+
+    font-size:
+        20px;
+
+    cursor:
+        pointer;
+
+    backdrop-filter:
+        blur(12px)
+        saturate(125%);
+
+    -webkit-backdrop-filter:
+        blur(12px)
+        saturate(125%);
+
+    box-shadow:
+        0 6px 20px
+        rgba(255, 105, 140, 0.18),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.40);
+
+    transition:
+        transform 0.25s ease,
+        background-color 0.2s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* ========================================
+   NO BUTTON
+======================================== */
+
+#No-btn {
+    background:
+        rgba(255, 77, 77, 0.85);
+
+    color:
+        white;
+}
+
+
+/* ========================================
+   YES BUTTON
+======================================== */
+
+#Yes-btn {
+    background:
+        var(--theme-main);
+
+    color:
+        white;
+}
+
+
+/* ========================================
+   NO HOVER
+======================================== */
+
+#No-btn:hover {
+    background:
+        rgba(255, 51, 51, 0.92);
+
+    transform:
+        scale(1.10);
+
+    box-shadow:
+        0 10px 30px
+        rgba(255, 80, 100, 0.30),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.50);
+}
+
+
+/* ========================================
+   YES HOVER
+======================================== */
+
+#Yes-btn:hover {
+    background:
+        var(--theme-glow);
+
+    transform:
+        scale(1.10);
+
+    box-shadow:
+        0 10px 30px
+        var(--theme-glow),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.50);
+}
+
+
+/* ========================================
+   AVATAR
+======================================== */
+
+.avatar {
+    width:
+        20rem;
+
+    height:
+        20rem;
+
+    margin-top:
+        20px;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        flex-end;
+}
+
+.avatar img {
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        contain;
+}
+
+
+/* ========================================
+   TALKING ANIMATION
+======================================== */
+
+.avatar img.talking {
+    animation:
+        talkingBounce
+        0.35s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes talkingBounce {
+    from {
+        transform:
+            translateY(0);
+    }
+
+    to {
+        transform:
+            translateY(-8px);
+    }
+}
+
+
+/* ========================================
+   OVERLAYS
+======================================== */
+
+.Overlay {
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    z-index:
+        1000;
+
+    pointer-events:
+        none;
+}
+
+.hidden {
+    display:
+        none;
+}
+
+
+/* ========================================
+   COUNTDOWN
+======================================== */
+
+#Countdown {
+    font-size:
+        8rem;
+
+    font-weight:
+        bold;
+
+    color:
+        white;
+
+    text-shadow:
+        0 4px 15px
+        rgba(0, 0, 0, 0.30);
+
+    animation:
+        countdownPop
+        1s
+        ease;
+}
+
+@keyframes countdownPop {
+    0% {
+        transform:
+            scale(0.5);
+
+        opacity:
+            0;
+    }
+
+    50% {
+        transform:
+            scale(1.2);
+
+        opacity:
+            1;
+    }
+
+    100% {
+        transform:
+            scale(1);
+
+        opacity:
+            1;
+    }
+}
+
+
+/* ========================================
+   SCORE
+======================================== */
+
+#Score-Display {
+    position:
+        fixed;
+
+    top:
+        20px;
+
+    right:
+        20px;
+
+    padding:
+        10px 18px;
+
+    background:
+        rgba(255, 255, 255, 0.45);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(125%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(125%);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.75);
+
+    border-radius:
+        12px;
+
+    font-size:
+        20px;
+
+    font-weight:
+        bold;
+
+    color:
+        #ff91a4;
+
+    box-shadow:
+        0 8px 32px
+        rgba(255, 105, 140, 0.14),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.85);
+
+    z-index:
+        500;
+
+    display:
+        none;
+}
+
+
+/* ========================================
+   SCORE POP
+======================================== */
+
+#Score-Display.score-pop {
+    animation:
+        scorePop
+        0.2s
+        ease;
+}
+
+@keyframes scorePop {
+    0% {
+        transform:
+            scale(1);
+    }
+
+    50% {
+        transform:
+            scale(1.15);
+    }
+
+    100% {
+        transform:
+            scale(1);
+    }
+}
+
+
+/* ========================================
+   FINISH BOX
+======================================== */
+
+.Finish-Box {
+    min-width:
+        300px;
+
+    padding:
+        30px;
+
+    text-align:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.55),
+            rgba(255, 255, 255, 0.25)
+        );
+
+    backdrop-filter:
+        blur(20px)
+        saturate(125%);
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(125%);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.80);
+
+    border-radius:
+        20px;
+
+    box-shadow:
+        0 10px 35px
+        var(--theme-glow),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.90),
+
+        inset 0 0 25px
+        var(--theme-light);
+
+    animation:
+        finishPop
+        0.4s
+        ease;
+}
+
+.Finish-Box h2 {
+    margin-top:
+        0;
+
+    color:
+        var(--theme-main);
+}
+
+.Finish-Box p {
+    font-size:
+        20px;
+}
+
+#Final-Score {
+    color:
+        var(--theme-dark);
+
+    font-size:
+        28px;
+}
+
+
+/* ========================================
+   FINISH ANIMATION
+======================================== */
+
+@keyframes finishPop {
+    0% {
+        transform:
+            scale(0.7);
+
+        opacity:
+            0;
+    }
+
+    100% {
+        transform:
+            scale(1);
+
+        opacity:
+            1;
+    }
+}
+
+
+/* ========================================
+   DATE SCHEDULER
+======================================== */
+
+.Schedule-Overlay {
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    z-index:
+        2000;
+
+    background:
+        var(--theme-light);
+
+    backdrop-filter:
+        blur(8px)
+        saturate(120%);
+
+    -webkit-backdrop-filter:
+        blur(8px)
+        saturate(120%);
+}
+
+.Schedule-Overlay.hidden {
+    display:
+        none !important;
+}
+
+
+/* ========================================
+   SCHEDULE BOX
+======================================== */
+
+.Schedule-Box {
+    width:
+        min(90vw, 420px);
+
+    padding:
+        30px;
+
+    text-align:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.72),
+            rgba(255, 255, 255, 0.38)
+        );
+
+    backdrop-filter:
+        blur(24px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(24px)
+        saturate(135%);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.85);
+
+    border-radius:
+        24px;
+
+    box-shadow:
+        0 15px 50px
+        var(--theme-glow),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.95),
+
+        inset 0 0 30px
+        var(--theme-light);
+
+    animation:
+        schedulePop
+        0.4s
+        ease;
+}
+
+
+/* ========================================
+   SCHEDULE ICON
+======================================== */
+
+.Schedule-Icon {
+    font-size:
+        3rem;
+
+    margin-bottom:
+        10px;
+}
+
+
+/* ========================================
+   SCHEDULE TITLE
+======================================== */
+
+.Schedule-Box h2 {
+    margin:
+        0 0 8px;
+
+    color:
+        var(--theme-main);
+
+    font-size:
+        28px;
+}
+
+
+/* ========================================
+   SCHEDULE SUBTITLE
+======================================== */
+
+.Schedule-Subtitle {
+    margin:
+        0 0 25px;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        15px;
+}
+
+
+/* ========================================
+   INPUT GROUP
+======================================== */
+
+.Input-Group {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    text-align:
+        left;
+
+    margin-bottom:
+        18px;
+}
+
+
+/* ========================================
+   INPUT LABEL
+======================================== */
+
+.Input-Group label {
+    margin-bottom:
+        7px;
+
+    font-weight:
+        bold;
+
+    color:
+        var(--theme-dark);
+}
+
+
+/* ========================================
+   DATE/TIME INPUT
+======================================== */
+
+.Input-Group input {
+    width:
+        100%;
+
+    padding:
+        13px 14px;
+
+    border:
+        1px solid
+        var(--theme-main);
+
+    border-radius:
+        12px;
+
+    background:
+        rgba(255, 255, 255, 0.60);
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        16px;
+
+    outline:
+        none;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.Input-Group input:focus {
+    border-color:
+        var(--theme-main);
+
+    box-shadow:
+        0 0 0 3px
+        var(--theme-glow);
+}
+
+
+/* ========================================
+   SCHEDULE BUTTON
+======================================== */
+
+#Schedule-Button {
+    width:
+        100%;
+
+    padding:
+        14px;
+
+    margin-top:
+        5px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.55);
+
+    border-radius:
+        12px;
+
+    background:
+        var(--theme-main);
+
+    color:
+        white;
+
+    font-size:
+        17px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 8px 20px
+        var(--theme-glow),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.45);
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#Schedule-Button:hover {
+    background:
+        var(--theme-dark);
+
+    transform:
+        scale(1.03);
+
+    box-shadow:
+        0 10px 28px
+        var(--theme-glow),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.55);
+}
+
+
+/* ========================================
+   SCHEDULE ERROR
+======================================== */
+
+.Schedule-Error {
+    margin:
+        12px 0 0;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        14px;
+
+    font-weight:
+        bold;
+}
+
+.Schedule-Error.hidden {
+    display:
+        none !important;
+}
+
+
+/* ========================================
+   SCHEDULE POP ANIMATION
+======================================== */
+
+@keyframes schedulePop {
+    0% {
+        opacity:
+            0;
+
+        transform:
+            scale(0.85)
+            translateY(15px);
+    }
+
+    100% {
+        opacity:
+            1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 600px) {
+
+    #Title {
+        font-size:
+            2.3rem;
+    }
+
+    main {
+        width:
+            90vw;
+    }
+
+    .Dialog-Box {
+        width:
+            90vw;
+    }
+
+    .avatar {
+        width:
+            18rem;
+
+        height:
+            18rem;
+    }
+
+    #No-btn,
+    #Yes-btn {
+        width:
+            7rem;
+
+        height:
+            3rem;
+    }
+
+    #Countdown {
+        font-size:
+            6rem;
+    }
+
+    #Score-Display {
+        top:
+            10px;
+
+        right:
+            10px;
+
+        font-size:
+            16px;
+
+        padding:
+            8px 12px;
+    }
+
+    .Finish-Box {
+        min-width:
+            unset;
+
+        width:
+            85vw;
+    }
+
+    /* DATE SCHEDULER */
+
+    .Schedule-Box {
+        width:
+            88vw;
+
+        padding:
+            25px 20px;
+    }
+
+    .Schedule-Box h2 {
+        font-size:
+            24px;
+    }
+}
+
+
+/* ========================================
+   THEMES
+======================================== */
+
+body[data-theme="default"] {
+    --theme-main: #ff91a4;
+    --theme-dark: #c65370;
+    --theme-light: #ffdce6;
+
+    --theme-bg-start: #fff3f6;
+    --theme-bg-middle: #ffdce6;
+    --theme-bg-end: #fff7f9;
+
+    --theme-glow: rgba(255, 105, 140, 0.25);
+    --theme-glass: rgba(255, 255, 255, 0.55);
+}
+
+
+/* DREAMS */
+
+body[data-theme="dreams"] {
+    --theme-main: #72b7e8;
+    --theme-dark: #397cae;
+    --theme-light: #ccecff;
+
+    --theme-bg-start: #f2fbff;
+    --theme-bg-middle: #ccecff;
+    --theme-bg-end: #eef8ff;
+
+    --theme-glow: rgba(75, 160, 220, 0.25);
+    --theme-glass: rgba(255, 255, 255, 0.60);
+}
+
+
+/* MOONLIGHT */
+
+body[data-theme="moonlight"] {
+    --theme-main: #a78bdb;
+    --theme-dark: #7155a5;
+    --theme-light: #e2d8f7;
+
+    --theme-bg-start: #faf7ff;
+    --theme-bg-middle: #e2d8f7;
+    --theme-bg-end: #f5f0ff;
+
+    --theme-glow: rgba(135, 105, 200, 0.25);
+    --theme-glass: rgba(255, 255, 255, 0.58);
+}
+
+
+/* MEADOW */
+
+body[data-theme="meadow"] {
+    --theme-main: #78c99b;
+    --theme-dark: #4c946c;
+    --theme-light: #d5f2df;
+
+    --theme-bg-start: #f4fff7;
+    --theme-bg-middle: #d5f2df;
+    --theme-bg-end: #effcf3;
+
+    --theme-glow: rgba(75, 170, 110, 0.22);
+    --theme-glass: rgba(255, 255, 255, 0.60);
+}
+
+
+/* SUNSET */
+
+body[data-theme="sunset"] {
+    --theme-main: #ff9b76;
+    --theme-dark: #c96b4b;
+    --theme-light: #ffe0d2;
+
+    --theme-bg-start: #fff7f2;
+    --theme-bg-middle: #ffe0d2;
+    --theme-bg-end: #fff3eb;
+
+    --theme-glow: rgba(255, 130, 90, 0.25);
+    --theme-glass: rgba(255, 255, 255, 0.60);
+}
+
+
+/* ========================================
+   SIDEBAR
+======================================== */
+
+.Sidebar {
+    position:
+        fixed;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        220px;
+
+    height:
+        100vh;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    padding-top:
+        20px;
+
+    gap:
+        12px;
+
+    z-index:
+        1500;
+
+    background:
+        var(--theme-glass);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    border-right:
+        1px solid
+        var(--theme-light);
+
+    transition:
+        width 0.3s ease;
+}
+
+
+/* COLLAPSED SIDEBAR */
+
+.Sidebar.collapsed {
+    width:
+        75px;
+}
+
+
+/* TOGGLE BUTTON */
+
+.Sidebar-Toggle {
+    width:
+        50px;
+
+    height:
+        50px;
+
+    border:
+        none;
+
+    border-radius:
+        15px;
+
+    background:
+        transparent;
+
+    font-size:
+        25px;
+
+    cursor:
+        pointer;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.Sidebar-Toggle:hover {
+    background:
+        var(--theme-light);
+
+    transform:
+        scale(1.05);
+}
+
+
+/* SIDEBAR BUTTON */
+
+.Sidebar-Button {
+    width:
+        calc(100% - 24px);
+
+    min-height:
+        55px;
+
+    border:
+        none;
+
+    border-radius:
+        15px;
+
+    background:
+        transparent;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    padding:
+        0 18px;
+
+    gap:
+        15px;
+
+    cursor:
+        pointer;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        15px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.Sidebar-Button:hover {
+    background:
+        var(--theme-light);
+
+    transform:
+        translateX(2px);
+}
+
+
+/* ACTIVE BUTTON */
+
+.Sidebar-Button.active {
+    background:
+        var(--theme-light);
+
+    font-weight:
+        bold;
+}
+
+
+/* ICON */
+
+.Sidebar-Icon {
+    min-width:
+        25px;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    font-size:
+        22px;
+}
+
+
+/* TEXT */
+
+.Sidebar-Text {
+    white-space:
+        nowrap;
+
+    opacity:
+        1;
+
+    transition:
+        opacity 0.2s ease,
+        width 0.3s ease;
+}
+
+
+/* ========================================
+   COLLAPSED STATE
+======================================== */
+
+.Sidebar.collapsed .Sidebar-Button {
+    width:
+        55px;
+
+    padding:
+        0;
+
+    justify-content:
+        center;
+
+    gap:
+        0;
+}
+
+.Sidebar.collapsed .Sidebar-Text {
+    width:
+        0;
+
+    opacity:
+        0;
+
+    overflow:
+        hidden;
+}
+
+.Sidebar.collapsed .Sidebar-Button:hover {
+    transform:
+        scale(1.05);
+}
+
+
+/* ========================================
+   PAGE MOVEMENT
+======================================== */
+
+#Game-Page {
+    margin-left:
+        220px;
+
+    transition:
+        margin-left 0.3s ease;
+}
+
+body.sidebar-collapsed #Game-Page {
+    margin-left:
+        75px;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .Sidebar {
+        width:
+            75px;
+    }
+
+    .Sidebar.collapsed {
+        width:
+            60px;
+    }
+
+    .Sidebar-Text {
+        display:
+            none;
+    }
+
+    .Sidebar-Button {
+        width:
+            55px;
+
+        padding:
+            0;
+
+        justify-content:
+            center;
+
+        gap:
+            0;
+    }
+
+    #Game-Page {
+        margin-left:
+            75px;
+    }
+
+    body.sidebar-collapsed #Game-Page {
+        margin-left:
+            60px;
+    }
+}
+
+
+/* ========================================
+   SETTINGS
+======================================== */
+
+.Settings-Overlay {
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    z-index:
+        3000;
+
+    background:
+        var(--theme-light);
+
+    backdrop-filter:
+        blur(8px)
+        saturate(120%);
+
+    -webkit-backdrop-filter:
+        blur(8px)
+        saturate(120%);
+}
+
+.Settings-Overlay.hidden {
+    display:
+        none !important;
+}
+
+
+.Settings-Box {
+    position:
+        relative;
+
+    width:
+        min(90%, 500px);
+
+    max-height:
+        85vh;
+
+    overflow-y:
+        auto;
+
+    padding:
+        30px;
+
+    text-align:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.72),
+            rgba(255, 255, 255, 0.38)
+        );
+
+    backdrop-filter:
+        blur(24px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(24px)
+        saturate(135%);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.85);
+
+    border-radius:
+        25px;
+
+    box-shadow:
+        0 15px 50px
+        var(--theme-glow),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.95);
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        var(--theme-main)
+        transparent;
+
+    animation:
+        settingsPop
+        0.3s
+        ease;
+}
+
+
+/* SETTINGS SCROLLBAR */
+
+.Settings-Box::-webkit-scrollbar {
+    width:
+        7px;
+}
+
+.Settings-Box::-webkit-scrollbar-track {
+    background:
+        transparent;
+}
+
+.Settings-Box::-webkit-scrollbar-thumb {
+    background:
+        var(--theme-main);
+
+    border-radius:
+        10px;
+}
+
+.Settings-Box::-webkit-scrollbar-thumb:hover {
+    background:
+        var(--theme-dark);
+}
+
+
+/* ========================================
+   THEME PICKER
+======================================== */
+
+.Theme-Section {
+    margin-top:
+        25px;
+
+    text-align:
+        left;
+}
+
+.Theme-Section h3 {
+    margin:
+        0;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        18px;
+}
+
+.Theme-Section > p {
+    margin:
+        5px 0 15px;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        13px;
+}
+
+
+/* GRID */
+
+.Theme-Grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:
+        10px;
+}
+
+
+/* CARD */
+
+.Theme-Card {
+    position:
+        relative;
+
+    padding:
+        10px;
+
+    border:
+        2px solid
+        transparent;
+
+    border-radius:
+        15px;
+
+    background:
+        rgba(255, 255, 255, 0.35);
+
+    cursor:
+        pointer;
+
+    text-align:
+        left;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.Theme-Card:hover {
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(255, 255, 255, 0.55);
+}
+
+.Theme-Card.active {
+    border-color:
+        var(--theme-main);
+
+    background:
+        var(--theme-glass);
+
+    box-shadow:
+        0 5px 15px
+        var(--theme-glow);
+}
+
+
+/* PREVIEW */
+
+.Theme-Preview {
+    height:
+        45px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        5px;
+
+    padding:
+        7px;
+
+    border-radius:
+        10px;
+
+    margin-bottom:
+        8px;
+}
+
+.Theme-Preview span {
+    width:
+        20px;
+
+    height:
+        20px;
+
+    border-radius:
+        50%;
+}
+
+
+/* DEFAULT PREVIEW */
+
+.theme-default {
+    background:
+        #ffdce6;
+}
+
+.theme-default span:nth-child(1) {
+    background:
+        #ff91a4;
+}
+
+.theme-default span:nth-child(2) {
+    background:
+        #ff7190;
+}
+
+.theme-default span:nth-child(3) {
+    background:
+        #c65370;
+}
+
+
+/* DREAMS PREVIEW */
+
+.theme-dreams {
+    background:
+        #ccecff;
+}
+
+.theme-dreams span:nth-child(1) {
+    background:
+        #72b7e8;
+}
+
+.theme-dreams span:nth-child(2) {
+    background:
+        #397cae;
+}
+
+.theme-dreams span:nth-child(3) {
+    background:
+        #a9dcfa;
+}
+
+
+/* MOONLIGHT PREVIEW */
+
+.theme-moonlight {
+    background:
+        #e2d8f7;
+}
+
+.theme-moonlight span:nth-child(1) {
+    background:
+        #a78bdb;
+}
+
+.theme-moonlight span:nth-child(2) {
+    background:
+        #7155a5;
+}
+
+.theme-moonlight span:nth-child(3) {
+    background:
+        #cbbbe9;
+}
+
+
+/* MEADOW PREVIEW */
+
+.theme-meadow {
+    background:
+        #d5f2df;
+}
+
+.theme-meadow span:nth-child(1) {
+    background:
+        #78c99b;
+}
+
+.theme-meadow span:nth-child(2) {
+    background:
+        #4c946c;
+}
+
+.theme-meadow span:nth-child(3) {
+    background:
+        #a9dfbd;
+}
+
+
+/* SUNSET PREVIEW */
+
+.theme-sunset {
+    background:
+        #ffe0d2;
+}
+
+.theme-sunset span:nth-child(1) {
+    background:
+        #ff9b76;
+}
+
+.theme-sunset span:nth-child(2) {
+    background:
+        #c96b4b;
+}
+
+.theme-sunset span:nth-child(3) {
+    background:
+        #ffc2a9;
+}
+
+
+.Theme-Card strong {
+    display:
+        block;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        14px;
+}
+
+.Theme-Card small {
+    color:
+        var(--theme-dark);
+
+    font-size:
+        11px;
+}
+
+
+/* ========================================
+   CLOSE BUTTON
+======================================== */
+
+.Close-Settings {
+    position:
+        absolute;
+
+    top:
+        12px;
+
+    right:
+        15px;
+
+    width:
+        35px;
+
+    height:
+        35px;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255, 145, 164, 0.15);
+
+    color:
+        #c65370;
+
+    font-size:
+        25px;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.Close-Settings:hover {
+    background:
+        rgba(255, 145, 164, 0.3);
+
+    transform:
+        scale(1.1);
+}
+
+
+/* ========================================
+   SETTINGS ICON
+======================================== */
+
+.Settings-Icon {
+    font-size:
+        3rem;
+
+    margin-bottom:
+        10px;
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
+
+.Settings-Box h2 {
+    margin:
+        0 0 8px;
+
+    color:
+        var(--theme-main);
+
+    font-size:
+        28px;
+}
+
+
+/* ========================================
+   SUBTITLE
+======================================== */
+
+.Settings-Subtitle {
+    margin:
+        0 0 25px;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        15px;
+}
+
+
+/* ========================================
+   SETTING ROW
+======================================== */
+
+.Setting-Row {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    text-align:
+        left;
+
+    padding:
+        15px;
+
+    margin-bottom:
+        12px;
+
+    border-radius:
+        15px;
+
+    background:
+        rgba(255, 255, 255, 0.35);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.5);
+}
+
+.Setting-Row strong {
+    display:
+        block;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        16px;
+}
+
+.Setting-Row small {
+    display:
+        block;
+
+    margin-top:
+        4px;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        13px;
+}
+
+
+/* ========================================
+   TOGGLE SWITCH
+======================================== */
+
+.Switch {
+    position:
+        relative;
+
+    width:
+        48px;
+
+    height:
+        26px;
+
+    flex-shrink:
+        0;
+}
+
+.Switch input {
+    opacity:
+        0;
+
+    width:
+        0;
+
+    height:
+        0;
+}
+
+.Slider {
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    cursor:
+        pointer;
+
+    border-radius:
+        30px;
+
+    background:
+        rgba(200, 150, 160, 0.35);
+
+    transition:
+        0.3s;
+}
+
+.Slider::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        20px;
+
+    height:
+        20px;
+
+    left:
+        3px;
+
+    top:
+        3px;
+
+    border-radius:
+        50%;
+
+    background:
+        white;
+
+    box-shadow:
+        0 2px 5px
+        rgba(0, 0, 0, 0.15);
+
+    transition:
+        0.3s;
+}
+
+.Switch input:checked + .Slider {
+    background:
+        var(--theme-main);
+}
+
+.Switch input:checked + .Slider::before {
+    transform:
+        translateX(22px);
+}
+
+
+/* ========================================
+   DONE BUTTON
+======================================== */
+
+.Settings-Done {
+    width:
+        100%;
+
+    padding:
+        14px;
+
+    margin-top:
+        12px;
+
+    border:
+        none;
+
+    border-radius:
+        12px;
+
+    background:
+        var(--theme-main);
+
+    color:
+        white;
+
+    font-size:
+        17px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.Settings-Done:hover {
+    background:
+        var(--theme-dark);
+
+    transform:
+        scale(1.03);
+}
+
+
+/* ========================================
+   SETTINGS ANIMATION
+======================================== */
+
+@keyframes settingsPop {
+    0% {
+        opacity:
+            0;
+
+        transform:
+            scale(0.85)
+            translateY(15px);
+    }
+
+    100% {
+        opacity:
+            1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+/* ========================================
+   MOBILE SETTINGS
+======================================== */
+
+@media (max-width: 600px) {
+
+    .Settings-Box {
+        width:
+            88vw;
+
+        padding:
+            25px 20px;
+    }
+
+    .Settings-Box h2 {
+        font-size:
+            24px;
+    }
+}
+
+/* ========================================
+   SETTINGS VOLUME CONTROLS
+======================================== */
+
+.Volume-Setting {
+    padding:
+        2px 15px 15px;
+
+    margin-top:
+        -8px;
+
+    margin-bottom:
+        12px;
+
+    text-align:
+        left;
+}
+
+.Volume-Setting-Header {
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        space-between;
+
+    gap:
+        14px;
+
+    margin-bottom:
+        8px;
+}
+
+.Volume-Setting-Header strong {
+    display:
+        block;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        14px;
+}
+
+.Volume-Setting-Header small {
+    display:
+        block;
+
+    margin-top:
+        3px;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        11px;
+
+    opacity:
+        0.8;
+}
+
+.Volume-Value {
+    flex-shrink:
+        0;
+
+    min-width:
+        40px;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    text-align:
+        right;
+}
+
+.Volume-Range {
+    width:
+        100%;
+
+    height:
+        5px;
+
+    margin:
+        0;
+
+    appearance:
+        none;
+
+    -webkit-appearance:
+        none;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(200, 150, 160, 0.28);
+
+    outline:
+        none;
+
+    cursor:
+        pointer;
+}
+
+.Volume-Range::-webkit-slider-thumb {
+    width:
+        17px;
+
+    height:
+        17px;
+
+    appearance:
+        none;
+
+    -webkit-appearance:
+        none;
+
+    border:
+        2px solid white;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--theme-main);
+
+    box-shadow:
+        0 2px 7px
+        rgba(198, 83, 112, 0.22);
+}
+
+.Volume-Range::-moz-range-thumb {
+    width:
+        13px;
+
+    height:
+        13px;
+
+    border:
+        2px solid white;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--theme-main);
+
+    box-shadow:
+        0 2px 7px
+        rgba(198, 83, 112, 0.22);
+}
+
+.Volume-Range:focus-visible {
+    box-shadow:
+        0 0 0 3px
+        rgba(255, 145, 164, 0.18);
+}
+

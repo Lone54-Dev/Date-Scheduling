@@ -1,0 +1,591 @@
+/* ========================================
+   MUSIC SETTINGS
+======================================== */
+
+.Music-Section {
+    margin-top: 22px;
+    text-align: left;
+}
+
+.Music-Section h3,
+.Admin-Section h3 {
+    margin: 0;
+    color: var(--theme-dark);
+    font-size: 18px;
+}
+
+.Music-Section > p,
+.Admin-Section > p {
+    margin: 5px 0 12px;
+    color: var(--theme-dark);
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.Music-Chooser {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid rgba(198, 83, 112, 0.25);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--theme-dark);
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+}
+
+.Music-Chooser:focus {
+    border-color: var(--theme-main);
+    box-shadow: 0 0 0 3px rgba(255, 145, 164, 0.12);
+}
+
+
+/* ========================================
+   ADMIN SETTINGS ENTRY
+======================================== */
+
+.Admin-Section {
+    margin-top: 25px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(198, 83, 112, 0.15);
+    text-align: left;
+}
+
+.Admin-Login-Button {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid rgba(198, 83, 112, 0.18);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--theme-dark);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.Admin-Login-Button:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.78);
+}
+
+
+/* ========================================
+   ADMIN OVERLAYS
+======================================== */
+
+.Admin-Overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(255, 239, 245, 0.62);
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+    z-index: 10000;
+}
+
+.Admin-Overlay.hidden {
+    display: none !important;
+}
+
+.Admin-Login-Box,
+.Admin-Panel-Box {
+    width: min(96vw, 900px);
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 26px;
+    border: 1px solid rgba(255, 255, 255, 0.86);
+    border-radius: 24px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.94),
+            rgba(255, 246, 249, 0.88)
+        );
+    box-shadow:
+        0 25px 70px rgba(198, 83, 112, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    animation: adminPop 0.28s ease;
+}
+
+.Admin-Login-Box {
+    position: relative;
+    width: min(92vw, 420px);
+    text-align: center;
+}
+
+.Admin-Login-Box p {
+    color: #8c6673;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.Admin-Login-Box input {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px solid rgba(198, 83, 112, 0.22);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.68);
+    color: #5f3241;
+    outline: none;
+}
+
+.Admin-Login-Box input:focus {
+    border-color: var(--theme-main);
+    box-shadow: 0 0 0 3px rgba(255, 145, 164, 0.12);
+}
+
+.Admin-Icon {
+    margin-bottom: 7px;
+    font-size: 38px;
+}
+
+.Admin-Login-Box h2,
+.Admin-Panel-Box h2 {
+    margin: 0;
+    color: var(--theme-dark);
+}
+
+.Admin-Primary-Button,
+.Admin-Secondary-Button,
+.Admin-Danger-Button {
+    border: none;
+    border-radius: 11px;
+    padding: 10px 13px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.Admin-Primary-Button {
+    background: linear-gradient(135deg, #ff91a4, #e96e89);
+    color: white;
+    box-shadow: 0 8px 18px rgba(233, 110, 137, 0.20);
+}
+
+.Admin-Primary-Button:hover,
+.Admin-Secondary-Button:hover,
+.Admin-Danger-Button:hover {
+    transform: translateY(-2px);
+}
+
+.Admin-Secondary-Button {
+    background: #f4e7eb;
+    color: #805466;
+}
+
+.Admin-Danger-Button {
+    background: #f9dfe6;
+    color: #b13f5d;
+}
+
+.Admin-Small-Button {
+    padding: 9px 12px;
+}
+
+.Admin-Close {
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 145, 164, 0.12);
+    color: var(--theme-dark);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.Admin-Login-Box > .Admin-Close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+.Admin-Panel-Header-Actions > .Admin-Close {
+    flex-shrink: 0;
+}
+
+.Admin-Login-Box .Admin-Primary-Button {
+    width: 100%;
+    margin-top: 14px;
+}
+
+
+/* ========================================
+   ADMIN PANEL HEADER
+======================================== */
+
+.Admin-Panel-Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.Admin-Panel-Header p {
+    margin: 5px 0 0;
+    color: #8c6673;
+    font-size: 13px;
+}
+
+.Admin-Panel-Header-Actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.Admin-Save-Changes-Button {
+    white-space: nowrap;
+    min-width: 132px;
+}
+
+.Admin-Save-Status {
+    margin: -6px 0 10px;
+    padding: 9px 11px;
+    border-radius: 10px;
+    background: rgba(125, 210, 155, 0.14);
+    color: #4d8962;
+    font-size: 11px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.Admin-Save-Status.error {
+    background: rgba(198, 83, 112, 0.10);
+    color: #c65370;
+}
+
+
+/* ========================================
+   ADMIN SECTIONS
+======================================== */
+
+.Admin-Panel-Section {
+    margin-top: 18px;
+    padding: 18px;
+    border: 1px solid rgba(198, 83, 112, 0.13);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.48);
+}
+
+.Admin-Section-Heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.Admin-Section-Heading h3 {
+    margin: 0;
+    color: var(--theme-dark);
+    font-size: 17px;
+}
+
+.Admin-Section-Heading p {
+    margin: 4px 0 0;
+    color: #8c6673;
+    font-size: 12px;
+}
+
+
+/* ========================================
+   PLACES LIST
+======================================== */
+
+.Admin-Places-List,
+.Admin-Music-List,
+.Admin-Avatar-List {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.Admin-Place-Item,
+.Admin-Music-Item,
+.Admin-Avatar-Item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(198, 83, 112, 0.10);
+}
+
+.Admin-Place-Item > img {
+    width: 62px;
+    height: 62px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.Admin-Place-Item-Info,
+.Admin-Music-Item > div,
+.Admin-Avatar-Item > div {
+    min-width: 0;
+    flex: 1;
+}
+
+.Admin-Place-Item-Info,
+.Admin-Music-Item > div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.Admin-Place-Item-Info strong,
+.Admin-Music-Item strong,
+.Admin-Avatar-Item strong {
+    color: #6d3142;
+    font-size: 13px;
+}
+
+.Admin-Place-Item-Info small,
+.Admin-Music-Item small,
+.Admin-Avatar-Item small {
+    color: #927180;
+    font-size: 11px;
+    line-height: 1.35;
+}
+
+.Admin-Item-Actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.Admin-Empty-State {
+    padding: 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.48);
+    color: #927180;
+    font-size: 12px;
+    text-align: center;
+}
+
+
+/* ========================================
+   ADMIN FORMS
+======================================== */
+
+.Admin-Editor-Form {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    margin-top: 13px;
+    padding: 15px;
+    border-radius: 14px;
+    background: rgba(255, 248, 250, 0.82);
+}
+
+.Admin-Editor-Form h4 {
+    margin: 0 0 3px;
+    color: var(--theme-dark);
+}
+
+.Admin-Editor-Form label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #704253;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.Admin-Editor-Form label small {
+    font-weight: 400;
+    color: #927180;
+}
+
+.Admin-Editor-Form input,
+.Admin-Editor-Form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 11px;
+    border: 1px solid rgba(198, 83, 112, 0.20);
+    border-radius: 10px;
+    background: white;
+    color: #5f3241;
+    font-family: Arial, sans-serif;
+    outline: none;
+}
+
+.Admin-Editor-Form textarea {
+    resize: vertical;
+}
+
+.Admin-Editor-Form input:focus,
+.Admin-Editor-Form textarea:focus {
+    border-color: var(--theme-main);
+    box-shadow: 0 0 0 3px rgba(255, 145, 164, 0.10);
+}
+
+.Admin-Form-Grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.Admin-Editor-Actions {
+    display: flex;
+    gap: 8px;
+}
+
+.Admin-Editor-Actions > * {
+    flex: 1;
+}
+
+.Admin-Message {
+    margin: 0;
+    color: #4d8962;
+    font-size: 11px;
+}
+
+.Admin-Message.error,
+.Admin-Error {
+    color: #c65370;
+}
+
+
+/* ========================================
+   AVATARS
+======================================== */
+
+.Admin-Avatar-List {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.Admin-Avatar-Item {
+    align-items: center;
+}
+
+.Admin-Avatar-Item > img {
+    width: 62px;
+    height: 62px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.Admin-Avatar-Item > div {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.Admin-Avatar-Item strong {
+    width: 100%;
+}
+
+.Admin-File-Button {
+    display: inline-flex !important;
+    width: auto !important;
+    padding: 8px 10px;
+    border-radius: 9px;
+    background: #f4e7eb;
+    color: #805466 !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    cursor: pointer;
+}
+
+.Admin-File-Button input {
+    display: none;
+}
+
+.Admin-Reset-Avatar {
+    padding: 8px 10px;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .Admin-Panel-Box {
+        width: 96vw;
+        max-height: 94vh;
+        padding: 18px;
+    }
+
+    .Admin-Panel-Header {
+        flex-direction: column;
+    }
+
+    .Admin-Panel-Header-Actions {
+        width: 100%;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+
+    .Admin-Save-Changes-Button {
+        min-width: 0;
+        flex: 1 1 150px;
+    }
+
+    .Admin-Section-Heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .Admin-Form-Grid,
+    .Admin-Avatar-List {
+        grid-template-columns: 1fr;
+    }
+
+    .Admin-Place-Item {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .Admin-Item-Actions {
+        width: 100%;
+        margin-left: 74px;
+    }
+
+}
+
+
+@keyframes adminPop {
+
+    from {
+        opacity: 0;
+        transform: scale(0.94) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+}
+
+/* Actions beside the Places section heading */
+.Admin-Section-Heading-Actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+    .Admin-Section-Heading-Actions {
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    .Admin-Section-Heading-Actions .Admin-Small-Button {
+        flex: 1 1 140px;
+    }
+}

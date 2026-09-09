@@ -1,0 +1,1658 @@
+/* ========================================
+   PLACES PAGE
+======================================== */
+
+.Places-Page {
+
+    min-height: 100vh;
+
+    width: 100%;
+
+    padding:
+        45px
+        40px
+        35px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+
+.Places-Header {
+
+    text-align: center;
+
+    margin-bottom: 28px;
+
+}
+
+
+.Places-Header h1 {
+
+    margin: 0;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        clamp(
+            30px,
+            4vw,
+            42px
+        );
+
+    font-weight: 800;
+
+}
+
+
+.Places-Header p {
+
+    margin:
+        8px
+        0
+        0;
+
+    color:
+        var(--theme-dark);
+
+    opacity: 0.75;
+
+    font-size:
+        16px;
+
+}
+
+
+.Places-Stage {
+
+    position: relative;
+
+    width:
+        min(
+            1100px,
+            100%
+        );
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.Place-Slider {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+
+.Place-Deck {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 510px;
+
+    touch-action: manipulation;
+
+}
+
+
+.Place-Deck.is-shuffling {
+
+    pointer-events: none;
+
+}
+
+
+/* ========================================
+   CARD
+======================================== */
+
+.Place-Card {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    width:
+        min(
+            68vw,
+            370px
+        );
+
+    height: 450px;
+
+    transform-origin: center center;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.9
+        );
+
+    border:
+        2px solid
+        var(--theme-light);
+
+    border-radius:
+        26px;
+
+    overflow:
+        hidden;
+
+    box-shadow:
+        0 18px 35px
+        rgba(
+            80,
+            30,
+            50,
+            0.16
+        ),
+        0 4px 12px
+        rgba(
+            80,
+            30,
+            50,
+            0.08
+        );
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        opacity 0.35s ease;
+
+    cursor:
+        pointer;
+
+    user-select:
+        none;
+
+    -webkit-user-select:
+        none;
+
+    z-index:
+        1;
+
+}
+
+
+.Place-Card.is-front {
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        )
+        rotate(0deg)
+        scale(1);
+
+    z-index:
+        40;
+
+}
+
+
+.Place-Card.is-second {
+
+    transform:
+        translate(
+            calc(-50% - 18px),
+            calc(-50% - 8px)
+        )
+        rotate(-3deg)
+        scale(0.98);
+
+    z-index:
+        30;
+
+}
+
+
+.Place-Card.is-third {
+
+    transform:
+        translate(
+            calc(-50% - 34px),
+            calc(-50% - 16px)
+        )
+        rotate(-6deg)
+        scale(0.96);
+
+    z-index:
+        20;
+
+}
+
+
+.Place-Card.is-hidden {
+
+    transform:
+        translate(
+            calc(-50% - 48px),
+            calc(-50% - 23px)
+        )
+        rotate(-9deg)
+        scale(0.94);
+
+    z-index:
+        10;
+
+    pointer-events:
+        none;
+
+}
+
+
+.Place-Deck:hover
+.Place-Card.is-front {
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        )
+        rotate(0deg)
+        scale(1.015);
+
+}
+
+
+.Place-Deck:hover
+.Place-Card.is-second {
+
+    transform:
+        translate(
+            calc(-50% - 65px),
+            calc(-50% - 18px)
+        )
+        rotate(-6deg)
+        scale(0.985);
+
+}
+
+
+.Place-Deck:hover
+.Place-Card.is-third {
+
+    transform:
+        translate(
+            calc(-50% - 105px),
+            calc(-50% - 30px)
+        )
+        rotate(-11deg)
+        scale(0.965);
+
+}
+
+
+.Place-Deck:hover
+.Place-Card.is-hidden {
+
+    transform:
+        translate(
+            calc(-50% - 140px),
+            calc(-50% - 40px)
+        )
+        rotate(-16deg)
+        scale(0.945);
+
+}
+
+
+/* ========================================
+   CARD IMAGE
+======================================== */
+
+.Place-Image-Container {
+
+    width:
+        100%;
+
+    height:
+        230px;
+
+    overflow:
+        hidden;
+
+}
+
+
+.Place-Image {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        block;
+
+    object-fit:
+        cover;
+
+    pointer-events:
+        none;
+
+}
+
+
+/* ========================================
+   CARD INFO
+======================================== */
+
+.Place-Info {
+
+    padding:
+        20px
+        20px
+        18px;
+
+}
+
+
+.Place-Name {
+
+    margin:
+        0
+        0
+        8px;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        25px;
+
+    font-weight:
+        800;
+
+}
+
+
+.Place-Short-Description {
+
+    margin:
+        0;
+
+    color:
+        #5a4550;
+
+    line-height:
+        1.5;
+
+    font-size:
+        14px;
+
+}
+
+
+.Place-Full-Description {
+
+    display:
+        none;
+
+    margin-top:
+        14px;
+
+    color:
+        #5a4550;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.55;
+
+}
+
+
+.Place-Details {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        10px;
+
+    margin-top:
+        15px;
+
+}
+
+
+.Place-Details > div {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        2px;
+
+}
+
+
+.Place-Details strong {
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        13px;
+
+}
+
+
+.Place-Details span {
+
+    color:
+        #5a4550;
+
+    font-size:
+        13px;
+
+}
+
+
+/* ========================================
+   LONG PRESS
+======================================== */
+
+.Long-Press-Container {
+
+    position:
+        relative;
+
+    margin-top:
+        17px;
+
+    height:
+        38px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        12px;
+
+    background:
+        var(--theme-light);
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+}
+
+
+.Long-Press-Progress {
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    width:
+        0;
+
+    height:
+        100%;
+
+    background:
+        rgba(
+            255,
+            145,
+            164,
+            0.38
+        );
+
+    transition:
+        width 0.05s
+        linear;
+
+}
+
+
+.Long-Press-Container span {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    padding:
+        0
+        10px;
+
+    text-align:
+        center;
+
+}
+
+
+/* ========================================
+   CLOSE
+======================================== */
+
+.Place-Close {
+
+    position:
+        absolute;
+
+    top:
+        11px;
+
+    right:
+        11px;
+
+    width:
+        35px;
+
+    height:
+        35px;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.82
+        );
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        22px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    cursor:
+        pointer;
+
+    z-index:
+        100;
+
+}
+
+
+.Place-Close:hover {
+
+    background:
+        white;
+
+    transform:
+        scale(1.05);
+
+}
+
+
+/* ========================================
+   SHUFFLE
+======================================== */
+
+.Place-Card.shuffle-left {
+
+    animation:
+        placeShuffleLeft
+        0.3s
+        ease
+        forwards;
+
+}
+
+
+.Place-Card.shuffle-right {
+
+    animation:
+        placeShuffleRight
+        0.3s
+        ease
+        forwards;
+
+}
+
+
+@keyframes placeShuffleLeft {
+
+    0% {
+
+        opacity:
+            1;
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            rotate(0deg)
+            scale(1);
+
+    }
+
+    100% {
+
+        opacity:
+            0;
+
+        transform:
+            translate(
+                calc(-50% - 230px),
+                -50%
+            )
+            rotate(-18deg)
+            scale(0.88);
+
+    }
+
+}
+
+
+@keyframes placeShuffleRight {
+
+    0% {
+
+        opacity:
+            1;
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            rotate(0deg)
+            scale(1);
+
+    }
+
+    100% {
+
+        opacity:
+            0;
+
+        transform:
+            translate(
+                calc(-50% + 230px),
+                -50%
+            )
+            rotate(18deg)
+            scale(0.88);
+
+    }
+
+}
+
+
+/* ========================================
+   INDICATORS
+======================================== */
+
+.Place-Indicators {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        8px;
+
+    margin-top:
+        4px;
+
+}
+
+
+.Place-Indicator {
+
+    width:
+        9px;
+
+    height:
+        9px;
+
+    padding:
+        0;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--theme-light);
+
+    cursor:
+        pointer;
+
+}
+
+
+.Place-Indicator.active {
+
+    background:
+        var(--theme-dark);
+
+    transform:
+        scale(1.15);
+
+}
+
+
+/* ========================================
+   CONVERSATION
+======================================== */
+
+.Place-Conversation {
+
+    position:
+        fixed;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    width:
+        260px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    opacity:
+        0;
+
+    visibility:
+        hidden;
+
+    pointer-events:
+        none;
+
+    transform:
+        translate(
+            calc(-50% + 390px),
+            -50%
+        );
+
+    z-index:
+        10002;
+
+    filter:
+        none !important;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.45s ease,
+        visibility 0.3s ease;
+
+}
+
+
+.Place-Conversation.visible {
+
+    opacity:
+        1;
+
+    visibility:
+        visible;
+
+    pointer-events:
+        auto;
+
+    transform:
+        translate(
+            calc(-50% + 390px),
+            -50%
+        );
+
+    filter:
+        none !important;
+
+}
+
+
+/* ========================================
+   CONVERSATION EXIT
+======================================== */
+
+.Place-Conversation.exit-right {
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    transform:
+        translate(
+            calc(-50% + 700px),
+            -50%
+        )
+        rotate(4deg);
+
+}
+
+
+/* ========================================
+   DIALOGUE BUBBLE
+======================================== */
+
+.Place-Dialogue-Bubble {
+
+    position:
+        relative;
+
+    width:
+        260px;
+
+    padding:
+        20px
+        18px
+        17px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.94
+        );
+
+    border:
+        2px solid
+        var(--theme-light);
+
+    border-radius:
+        22px;
+
+    box-shadow:
+        0 15px 30px
+        rgba(
+            80,
+            30,
+            50,
+            0.14
+        );
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    text-align:
+        center;
+
+}
+
+
+.Place-Dialogue-Bubble::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    bottom:
+        -14px;
+
+    left:
+        50%;
+
+    width:
+        25px;
+
+    height:
+        25px;
+
+    transform:
+        translateX(-50%)
+        rotate(45deg);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.94
+        );
+
+    border-right:
+        2px solid
+        var(--theme-light);
+
+    border-bottom:
+        2px solid
+        var(--theme-light);
+
+    z-index:
+        -1;
+
+}
+
+
+/* ========================================
+   DIALOGUE
+======================================== */
+
+.Place-Dialogue {
+
+    min-height:
+        50px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    color:
+        var(--theme-dark);
+
+    font-size:
+        17px;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.4;
+
+    text-align:
+        center;
+
+}
+
+
+.Place-Dialogue.change {
+
+    opacity:
+        0;
+
+    transform:
+        translateY(5px);
+
+}
+
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.Place-Conversation-Buttons {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        10px;
+
+    margin-top:
+        15px;
+
+}
+
+
+.Place-Choice-Button {
+
+    min-width:
+        75px;
+
+    padding:
+        9px
+        16px;
+
+    border:
+        none;
+
+    border-radius:
+        13px;
+
+    font-size:
+        14px;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+}
+
+
+.Place-No {
+
+    background:
+        #f5d9df;
+
+    color:
+        #9d5064;
+
+}
+
+
+.Place-Yes {
+
+    background:
+        var(--theme-main);
+
+    color:
+        white;
+
+    box-shadow:
+        0 7px 16px
+        var(--theme-glow);
+
+}
+
+
+.Place-Choice-Button:disabled {
+
+    opacity:
+        0.55;
+
+    cursor:
+        default;
+
+}
+
+
+/* ========================================
+   AVATAR
+======================================== */
+
+.Places-Avatar {
+
+    width:
+        170px;
+
+    height:
+        190px;
+
+    margin-top:
+        30px;
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        center;
+
+    filter:
+        none !important;
+
+}
+
+
+.Places-Avatar img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        contain;
+
+    filter:
+        none !important;
+
+}
+
+
+.Places-Avatar img.talking {
+
+    animation:
+        talkingBouncePlaces
+        0.35s
+        ease-in-out
+        infinite
+        alternate;
+
+}
+
+
+@keyframes talkingBouncePlaces {
+
+    from {
+
+        transform:
+            translateY(0);
+
+    }
+
+    to {
+
+        transform:
+            translateY(-8px);
+
+    }
+
+}
+
+
+/* ========================================
+   EXPANDED CARD
+======================================== */
+
+.Place-Card.expanded {
+
+    position:
+        fixed;
+
+    top:
+        50%;
+
+    left:
+        50%;
+
+    width:
+        min(
+            88vw,
+            480px
+        );
+
+    height:
+        min(
+            82vh,
+            680px
+        );
+
+    max-height:
+        82vh;
+
+    overflow-y:
+        auto;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        ) !important;
+
+    rotate:
+        0deg !important;
+
+    scale:
+        1 !important;
+
+    z-index:
+        10001;
+
+    opacity:
+        1 !important;
+
+    filter:
+        none !important;
+
+    cursor:
+        default;
+
+}
+
+
+.Place-Card.expanded
+.Place-Image-Container {
+
+    height:
+        250px;
+
+}
+
+
+.Place-Card.expanded
+.Place-Full-Description {
+
+    display:
+        block;
+
+}
+
+
+.Place-Card.expanded
+.Long-Press-Container {
+
+    display:
+        none;
+
+}
+
+
+/* ========================================
+   BACKDROP
+======================================== */
+
+.Place-Backdrop {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        10000;
+
+    background:
+        rgba(
+            20,
+            10,
+            30,
+            0.38
+        );
+
+    backdrop-filter:
+        blur(8px)
+        saturate(110%);
+
+    -webkit-backdrop-filter:
+        blur(8px)
+        saturate(110%);
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity 0.25s ease;
+
+}
+
+
+.Place-Backdrop.visible {
+
+    opacity:
+        1;
+
+    pointer-events:
+        auto;
+
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+    .Places-Page {
+
+        padding:
+            35px
+            25px
+            30px;
+
+    }
+
+
+    .Place-Deck {
+
+        height:
+            470px;
+
+    }
+
+
+    .Place-Conversation {
+
+        width:
+            220px;
+
+        transform:
+            translate(
+                calc(-50% + 245px),
+                -50%
+            );
+
+    }
+
+
+    .Place-Conversation.visible {
+
+        transform:
+            translate(
+                calc(-50% + 245px),
+                -50%
+            );
+
+    }
+
+
+    .Place-Conversation.exit-right {
+
+        transform:
+            translate(
+                calc(-50% + 500px),
+                -50%
+            )
+            rotate(4deg);
+
+    }
+
+
+    .Place-Dialogue-Bubble {
+
+        width:
+            220px;
+
+    }
+
+
+    .Places-Avatar {
+
+        width:
+            145px;
+
+        height:
+            165px;
+
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .Places-Page {
+
+        padding:
+            30px
+            15px
+            25px;
+
+    }
+
+
+    .Places-Header h1 {
+
+        font-size:
+            28px;
+
+    }
+
+
+    .Place-Deck {
+
+        height:
+            445px;
+
+    }
+
+
+    .Place-Card {
+
+        width:
+            min(
+                75vw,
+                330px
+            );
+
+        height:
+            420px;
+
+    }
+
+
+    .Place-Image-Container {
+
+        height:
+            205px;
+
+    }
+
+
+    .Place-Name {
+
+        font-size:
+            22px;
+
+    }
+
+
+    .Place-Conversation {
+
+        top:
+            9%;
+
+        left:
+            50%;
+
+        width:
+            230px;
+
+        transform:
+            translate(
+                -50%,
+                0
+            );
+
+    }
+
+
+    .Place-Conversation.visible {
+
+        transform:
+            translate(
+                -50%,
+                0
+            );
+
+    }
+
+
+    .Place-Conversation.exit-right {
+
+        transform:
+            translate(
+                220px,
+                0
+            )
+            rotate(4deg);
+
+    }
+
+
+    .Place-Dialogue-Bubble {
+
+        width:
+            230px;
+
+    }
+
+
+    .Place-Dialogue-Bubble::after {
+
+        display:
+            none;
+
+    }
+
+
+    .Place-Dialogue {
+
+        font-size:
+            15px;
+
+    }
+
+
+    .Places-Avatar {
+
+        width:
+            125px;
+
+        height:
+            145px;
+
+    }
+
+
+    .Place-Card.expanded {
+
+        width:
+            90vw;
+
+        height:
+            min(
+                76vh,
+                620px
+            );
+
+    }
+
+}
+
+
+/* ========================================
+   VERY SMALL
+======================================== */
+
+@media (max-width: 430px) {
+
+    .Place-Card {
+
+        width:
+            78vw;
+
+        height:
+            395px;
+
+    }
+
+
+    .Place-Image-Container {
+
+        height:
+            190px;
+
+    }
+
+
+    .Place-Conversation {
+
+        top:
+            6%;
+
+    }
+
+
+    .Place-Dialogue-Bubble {
+
+        width:
+            210px;
+
+    }
+
+
+    .Place-Dialogue {
+
+        font-size:
+            14px;
+
+    }
+
+
+    .Places-Avatar {
+
+        width:
+            108px;
+
+        height:
+            128px;
+
+    }
+
+}
